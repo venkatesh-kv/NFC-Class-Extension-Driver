@@ -342,7 +342,8 @@ Return Value:
         if (!NT_SUCCESS(status))
         {
             TRACE_LINE(LEVEL_INFO, "WdfDeviceStopIdle failed, %!STATUS!", status);
-            goto Done;
+           // As CLX is not power policy owner, WdfDeviceStopIdle is expected to fail. Ignoring the return status
+           // goto Done;
         }
     }
     else
@@ -604,8 +605,10 @@ Return Value:
     //
     // Cleanup any left over power references from this file object
     //
-    NfcCxPowerCleanupFilePolicyReferences(fdoContext->Power, fileContext);
-
+    if (NULL != fdoContext->Power)
+    {
+        NfcCxPowerCleanupFilePolicyReferences(fdoContext->Power, fileContext);
+    }
     TRACE_FUNCTION_EXIT(LEVEL_VERBOSE);
 
     return;

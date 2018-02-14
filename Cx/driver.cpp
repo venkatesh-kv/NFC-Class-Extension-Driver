@@ -277,8 +277,8 @@ Return Value:
 
     //
     // The CX is the power policy owner of this stack.
-    //
-    WdfDeviceInitSetPowerPolicyOwnership(DeviceInit, TRUE);
+    //Forcing CLX to relinquish power policy ownership
+    WdfDeviceInitSetPowerPolicyOwnership(DeviceInit, FALSE);
 
     //
     // Allocate the CX DeviceInit

@@ -635,7 +635,8 @@ Return Value:
     else if (!NT_SUCCESS(status))
     {
         TRACE_LINE(LEVEL_ERROR, "'WdfDeviceStopIdle' call failed, %!STATUS!", status);
-        goto Done;
+        // As CLX is not power policy owner, WdfDeviceStopIdle is expected to fail. Ignoring the return status
+        //goto Done;
     }
 
     PowerManager->DeviceStopIdle = TRUE;
