@@ -342,6 +342,7 @@ Return Value:
         if (!NT_SUCCESS(status))
         {
             TRACE_LINE(LEVEL_INFO, "WdfDeviceStopIdle failed, %!STATUS!", status);
+            status = STATUS_SUCCESS; // Update it as success because else Vendor Create file will fail
            // As CLX is not power policy owner, WdfDeviceStopIdle is expected to fail. Ignoring the return status
            // goto Done;
         }
